@@ -300,6 +300,10 @@ html.app-not-foreground *::after {
   backdrop-filter: none !important;
   box-shadow: none !important;
 }
+/* A paused fade-in would stay frozen at opacity 0; skip it instead. */
+html.app-not-foreground .fade-in {
+  animation: none !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .ambient-orb,
