@@ -74,10 +74,11 @@ jobs:
         with:
           # Dual-publish: new canonical name + legacy name kept alive for
           # users who pinned the old image before the GitHub repo rename
-          # (denon-dashboard -> Denon-Marantz-AVR-Dashboard).
+          # (denon-dashboard -> Denon-Marantz-AVR-Dashboard). Forks cannot
+          # push the legacy name, so only the upstream repo publishes it.
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-            ${{ env.REGISTRY }}/oxygenlack/denon-dashboard
+            name=${{ env.REGISTRY }}/oxygenlack/denon-dashboard,enable=${{ github.repository_owner == 'OxygenLack' }}
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
